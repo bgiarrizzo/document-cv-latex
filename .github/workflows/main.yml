@@ -1,0 +1,17 @@
+name: Build CV
+
+on: [push]
+
+jobs:
+  latex-job:
+    runs-on: ubuntu-latest
+    name: Compile
+    container: blang/latex:ctanfull
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: pdflatex main.tex
+      - uses: actions/upload-artifact@v1
+        with:
+          name: CV
+          path: cv.pdf
